@@ -1,10 +1,24 @@
 package com.marchouk;
 
 public class MathEquation {
-    double leftVal;
-    double rightVal;
-    char opCode;
-    double result;
+    private double leftVal;
+    private double rightVal;
+    private char opCode;
+    private double result;
+
+    private static int numberOfCalculations;
+    private static double sumOfResults;
+
+    public MathEquation() {
+    }
+    public MathEquation(char opCode) {
+        this.opCode = opCode;
+    }
+    public MathEquation(char opCode, double leftVal, double rightVal) {
+        this(opCode);
+        this.leftVal = leftVal;
+        this.rightVal = rightVal;
+    }
 
     void execute() {
         switch(this.opCode) {
@@ -24,5 +38,19 @@ public class MathEquation {
                 System.out.println("Invalid opCode: " + opCode);
                 result = 0.0d;
         }
+        numberOfCalculations++;
+        sumOfResults += result;
+    }
+
+    void execute(double leftVal, double rightVal) {
+        this.leftVal = leftVal;
+        this.rightVal = rightVal;
+        execute();
+    }
+    public static double getAverageResult() {
+        return sumOfResults / numberOfCalculations;
+    }
+    public double getResult() {
+        return result;
     }
 }
