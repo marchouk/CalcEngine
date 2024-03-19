@@ -43,10 +43,21 @@ public class MathEquation {
     }
 
     void execute(double leftVal, double rightVal) {
+        System.out.println("Using execute overloads doubles");
         this.leftVal = leftVal;
         this.rightVal = rightVal;
         execute();
     }
+
+    void execute(int leftVal, int rightVal) {
+        System.out.println("Using execute overloads Int");
+        this.leftVal = leftVal;
+        this.rightVal = rightVal;
+        execute();
+
+        result = (int) result;
+    }
+
     public static double getAverageResult() {
         return sumOfResults / numberOfCalculations;
     }
