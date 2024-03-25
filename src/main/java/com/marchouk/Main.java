@@ -26,12 +26,12 @@ public class Main {
 
         for (MathEquation equation : equations) {
             equation.execute();
-            System.out.println("result = " + equation.getResult());
+            System.out.println(equation);
         }
         System.out.println("Average result = " + MathEquation.getAverageResult());
 
 
-        useOverloads();
+        //useOverloads();
     }
 
     private static void useOverloads() {
@@ -95,16 +95,14 @@ public class Main {
 
     private static void displayResult(char opCode, double leftVal, double rightVal, double result) {
         char symbol = symbolFromOpCode(opCode);
-        StringBuilder stringBuilder = new StringBuilder(40);
-        stringBuilder.append(leftVal);
-        stringBuilder.append(" ");
-        stringBuilder.append(symbol);
-        stringBuilder.append(" ");
-        stringBuilder.append(rightVal);
-        stringBuilder.append(" = ");
-        stringBuilder.append(result);
 
-        String output = stringBuilder.toString();
+        String output = leftVal +
+                " " +
+                symbol +
+                " " +
+                rightVal +
+                " = " +
+                result;
         System.out.println(output);
     }
 

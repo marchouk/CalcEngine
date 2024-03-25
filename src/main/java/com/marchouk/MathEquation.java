@@ -64,4 +64,29 @@ public class MathEquation {
     public double getResult() {
         return result;
     }
+
+    @Override
+    public String toString() {
+        return  leftVal +
+                " " +
+                symbolFromOpCode() +
+                " " +
+                rightVal +
+                " = " +
+                result;
+    }
+
+    private char symbolFromOpCode() {
+        char[] opCodes = {'a', 's', 'm', 'd'};
+        char[] symbols = {'+', '-', '*', '/'};
+        char symbol = ' ';
+        for (int i = 0; i < opCodes.length; i++) {
+            if (opCode == opCodes[i]) {
+                symbol = symbols[i];
+                break;
+            }
+        }
+
+        return symbol;
+    }
 }
