@@ -87,23 +87,9 @@ public class Main {
         char opCode = opCodeFromString(parts[0]);
         double leftVal = valueFromWord(parts[1]);
         double rightVal = valueFromWord(parts[2]);
-        
-        double result = execute(opCode, leftVal, rightVal);
-
-        displayResult(opCode, leftVal, rightVal, result);
-    }
-
-    private static void displayResult(char opCode, double leftVal, double rightVal, double result) {
-        char symbol = symbolFromOpCode(opCode);
-
-        String output = leftVal +
-                " " +
-                symbol +
-                " " +
-                rightVal +
-                " = " +
-                result;
-        System.out.println(output);
+        MathEquation equation = new MathEquation(opCode, leftVal, rightVal);
+        equation.execute();
+        System.out.println(equation);
     }
 
     public static double execute(char opCode, double leftVal, double rightVal) {
@@ -139,14 +125,19 @@ public class Main {
                 "five", "six", "seven", "eight", "nine"
         };
 
+        boolean isValueSet = false;
         double value = 0d;
         for (int i = 0; i < numberWords.length; i++) {
             if (word.equals(numberWords[i])) {
                 value = i;
+                isValueSet = true;
                 break;
             }
         }
 
+        if (!isValueSet) {
+            value = Double.parseDouble(word);
+        }
         return value;
     }
 }
