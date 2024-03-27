@@ -3,7 +3,7 @@ package com.marchouk;
 public class MathEquation {
     private double leftVal;
     private double rightVal;
-    private char opCode;
+    private MathOperation opCode;
     private double result;
 
     private static int numberOfCalculations;
@@ -11,10 +11,10 @@ public class MathEquation {
 
     public MathEquation() {
     }
-    public MathEquation(char opCode) {
+    public MathEquation(MathOperation opCode) {
         this.opCode = opCode;
     }
-    public MathEquation(char opCode, double leftVal, double rightVal) {
+    public MathEquation(MathOperation opCode, double leftVal, double rightVal) {
         this(opCode);
         this.leftVal = leftVal;
         this.rightVal = rightVal;
@@ -22,16 +22,16 @@ public class MathEquation {
 
     void execute() {
         switch(this.opCode) {
-            case 'a':
+            case ADD:
                 result = leftVal + rightVal;
                 break;
-            case 's':
+            case SUBTRACT:
                 result = leftVal - rightVal;
                 break;
-            case 'm':
+            case MULTIPLY:
                 result = leftVal * rightVal;
                 break;
-            case 'd':
+            case DIVIDE:
                 result = rightVal != 0 ? leftVal / rightVal : 0.0d;
                 break;
             default:
@@ -69,24 +69,10 @@ public class MathEquation {
     public String toString() {
         return  leftVal +
                 " " +
-                symbolFromOpCode() +
+                opCode.getSymbol() +
                 " " +
                 rightVal +
                 " = " +
                 result;
-    }
-
-    private char symbolFromOpCode() {
-        char[] opCodes = {'a', 's', 'm', 'd'};
-        char[] symbols = {'+', '-', '*', '/'};
-        char symbol = ' ';
-        for (int i = 0; i < opCodes.length; i++) {
-            if (opCode == opCodes[i]) {
-                symbol = symbols[i];
-                break;
-            }
-        }
-
-        return symbol;
     }
 }
