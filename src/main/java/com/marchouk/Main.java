@@ -10,7 +10,7 @@ public class Main {
         } else if (args.length == 1 && args[0].equals("interactive")) {
             executeInteractively();
         } else if (args.length == 3) {
-            handleCommandLine(args);
+            performOperation(args);
         } else {
             System.out.println("Please provide an operation and 2 numeric values!");
         }
@@ -51,28 +51,6 @@ public class Main {
         System.out.println("Overload result with integers = " + equationOverload.getResult());
     }
 
-    private static char symbolFromOpCode(char opCode) {
-        char[] opCodes = {'a', 's', 'm', 'd'};
-        char[] symbols = {'+', '-', '*', '/'};
-        char symbol = ' ';
-        for (int i = 0; i < opCodes.length; i++) {
-            if (opCode == opCodes[i]) {
-                symbol = symbols[i];
-                break;
-            }
-        }
-
-        return symbol;
-    }
-
-    private static void handleCommandLine(String[] args) {
-        char opCode = args[0].charAt(0);
-        double leftVal = Double.parseDouble(args[1]);
-        double rightVal = Double.parseDouble(args[2]);
-
-        System.out.println(execute(opCode, leftVal, rightVal));
-    }
-
     static void executeInteractively() {
         System.out.println("Enter an operation and two numbers");
         Scanner scanner = new Scanner(System.in);
@@ -90,29 +68,6 @@ public class Main {
         MathEquation equation = new MathEquation(opCode, leftVal, rightVal);
         equation.execute();
         System.out.println(equation);
-    }
-
-    public static double execute(char opCode, double leftVal, double rightVal) {
-        double result;
-        switch(opCode) {
-            case 'a':
-                result = leftVal + rightVal;
-                break;
-            case 's':
-                result = leftVal - rightVal;
-                break;
-            case 'm':
-                result = leftVal * rightVal;
-                break;
-            case 'd':
-                result = rightVal != 0 ? leftVal / rightVal : 0.0d;
-                break;
-            default:
-                System.out.println("Invalid opCode: " + opCode);
-                result = 0.0d;
-        }
-
-        return result;
     }
 
     static double valueFromWord(String word) {

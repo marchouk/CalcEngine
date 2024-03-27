@@ -3,8 +3,8 @@ package com.marchouk;
 public enum MathOperation {
     ADD('+'),
     SUBTRACT('-'),
-    MULTIPLY('/'),
-    DIVIDE('*');
+    MULTIPLY('*'),
+    DIVIDE('/');
 
     private final char symbol;
 
